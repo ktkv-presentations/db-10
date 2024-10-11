@@ -23,189 +23,347 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h1>Beautiful presentations</h1>
-                    <h2>New features</h2>
-                    <ul>
-                        <li>Nerd icons </li>
-                        <li>
-                            <code class="js">
-                                (inline) => code("highlighting")
-                            </code>
-                        </li>
-                        <li>Automatic QR Code generation</li>
-                        <li>and much more!</li>
-                    </ul>
-                </section>
-                <section>
-                    <h1>CUSTOM TOKYONIGHT THEME</h1>
-                    <h2 class="fragment">THAT HAS</h2>
-                    <h3 class="fragment">MULTI</h3>
-                    <h4 class="fragment">LEVEL</h4>
-                    <h5 class="fragment">HEADING</h5>
-                    <h6 class="fragment">COLORS</h6>
-                    <h6>
-                        Thanks to this project
-                        <a
-                            href="https://github.com/tcmmichaelb139/obsidian-tokyonight">
-                            
-                        </a>
-                        for the colorscheme!
-                    </h6>
+                    <h1>Триггеры</h1>
+                    <img
+                        class="r-stretch"
+                        src="https://ktkv-presentations.github.io/db-10"
+                        data-type="qrcode" />
                 </section>
                 <section>
                     <section>
-                        <h1>Tailwind CSS</h1>
-                        <div class="grid grid-cols-2 gap-8">
+                        <h1>Триггер</h1>
+                        <p>
+                            объект базы данных, который автоматически выполняет
+                            определённое действие в ответ на события
+                        </p>
+                        <pre><code class="sql">
+CREATE TRIGGER имя_триггера
+{BEFORE | AFTER | INSTEAD OF} {INSERT | UPDATE | DELETE}
+ON таблица
+[FOR EACH ROW]
+BEGIN
+  -- действия
+END;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Зачем нужны триггеры</h1>
+                        <ul>
+                            <li>Автоматизации процессов</li>
+                            <li>Обеспечения целостности данных</li>
+                            <li>Поддержки бизнес-логики</li>
+                        </ul>
+                        <br />
+                        <br />
+                        <div class="border-b">
+                            <p>
+                                В интернет-магазине триггер записывает изменения
+                                в заказах в отдельную таблицу истории заказов
+                            </p>
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Событие</h1>
+                        <div>
+                            действие, которое вызывает выполнение триггера
+                        </div>
+                        <br />
+                        <h4>Виды событий</h4>
+                        <div class="grid grid-cols-2 gap-12">
                             <div>
-                                <h5>Lorem, ipsum.</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Error quod fugiat harum
-                                    modi laboriosam dignissimos, maxime
-                                    possimus? Error, nihil in.
-                                </p>
+                                <h4>INSERT</h4>
+                                <p>когда в таблицу добавляется новая запись</p>
                             </div>
                             <div>
-                                <h5>Lorem, ipsum.</h5>
+                                <h4>UPDATE</h4>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Error quod fugiat harum
-                                    modi laboriosam dignissimos, maxime
-                                    possimus? Error, nihil in.
+                                    когда в таблице изменяется существующая
+                                    запись
                                 </p>
                             </div>
                             <div class="col-span-2">
-                                <h5>Lorem, ipsum.</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Error quod fugiat harum
-                                    modi laboriosam dignissimos, maxime
-                                    possimus? Error, nihil in.
-                                </p>
+                                <h4>DELETE</h4>
+                                <div>когда из таблицы удаляется запись</div>
                             </div>
                         </div>
                     </section>
                     <section>
-                        <h1>Custom classes</h1>
-                        <div class="grid grid-cols-3 gap-8">
-                            <div class="border-r">
-                                <h5>border-r</h5>
+                        <h1>Условие вызова</h1>
+                        <div class="grid grid-cols-2 gap-12">
+                            <div>
+                                <h4>BEFORE</h4>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Illum, soluta!
+                                    перед добавлением, обновлением или удалением
+                                    записи
                                 </p>
                             </div>
-                            <div class="border-o">
-                                <h5>border-o</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Illum, soluta!
-                                </p>
+                            <div>
+                                <h4>AFTER</h4>
+                                <p>после выполнения указанного события</p>
                             </div>
-                            <div class="border-y">
-                                <h5>border-y</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Illum, soluta!
-                                </p>
+                            <div class="col-span-2">
+                                <h4>INSTEAD OF</h4>
+                                <div>
+                                    заменяет выполнение указанного события
+                                </div>
                             </div>
                         </div>
                     </section>
-                </section>
-                <section>
-                    <section data-auto-animate>
-                        <h1>New code highlighting!</h1>
-                        <div>
-                            Now also has Tokyo Night
-                            <code>highlight.js</code>
-                            highlighting implementation
-                        </div>
-                        <pre><code data-trim data-noescape>
-var foo = {
-    bar: function () {
-             alert("Hello, World!");
-         }
-};	
-					</code></pre>
-                    </section>
-                    <section data-auto-animate>
-                        <h1>New code highlighting!</h1>
-                        <h5>Inline code highlighting is now also supported!</h5>
+                    <section>
+                        <h1>Тело триггера</h1>
                         <p>
-                            Just wrap your code with
-                            <code>&lt;code&gt;</code>
-                            tag and get highlighting like this
-                            <code class="js">
-                                const foo = () => {return bar}
-                            </code>
-                            !
+                            SQL-код, который выполняется, когда триггер
+                            срабатывает
                         </p>
                     </section>
                 </section>
                 <section>
-                    <h1>Mermaid for beautiful diagrams!</h1>
-                    <div class="mermaid">
-                        <pre>
-						erDiagram
-    CUSTOMER ||--o{ ORDER : ""
-    CUSTOMER {
-        string name
-        string custNumber
-        string sector
-    }
-    ORDER ||--|{ LINE-ITEM : contains
-    ORDER {
-        int orderNumber
-        string deliveryAddress
-    }
-    LINE-ITEM {
-        string productCode
-        int quantity
-        float pricePerUnit
-    }
-    ORDER ||--|{ STUDENT : contains
-    STUDENT {
-        int orderNumber
-        string deliveryAddress
-    }
-						</pre
-                        >
-                    </div>
-                    <h4>
-                        Check documentation
-                        <a href="https://mermaid.js.org/config/usage.html">
-                            here
-                        </a>
-                        !
-                    </h4>
+                    <section data-auto-animate>
+                        <h1>Части триггера</h1>
+                        <h4>Событие</h4>
+                        <pre><code data-id="code" data-trim data-noescape data-line-numbers="3" class="sql">
+CREATE TRIGGER update_order_status
+AFTER
+INSERT ON orders
+FOR EACH ROW
+BEGIN
+  UPDATE orders
+  SET status = 'обработан'
+  WHERE id = NEW.id;
+END;
+                    </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Части триггера</h1>
+                        <h4>Условие вызова</h4>
+                        <pre><code data-id="code" data-trim data-noescape data-line-numbers="2" class="sql">
+CREATE TRIGGER update_order_status
+AFTER
+INSERT ON orders
+FOR EACH ROW
+BEGIN
+  UPDATE orders
+  SET status = 'обработан'
+  WHERE id = NEW.id;
+END;
+                    </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Части триггера</h1>
+                        <h4>Тело триггера</h4>
+                        <pre><code data-id="code" data-trim data-noescape data-line-numbers="6-8" class="sql">
+CREATE TRIGGER update_order_status
+AFTER
+INSERT ON orders
+FOR EACH ROW
+BEGIN
+  UPDATE orders
+  SET status = 'обработан'
+  WHERE id = NEW.id;
+END;
+                    </code></pre>
+                    </section>
                 </section>
                 <section>
-                    <h1>Now supports Nerd font icons!</h1>
-                    <div>Nerdy project that adds icons to font itself</div>
-                    <h6>
-                        Checkout their site for icons like this
-                        <a href="https://www.nerdfonts.com/">󰖟</a>
-                        !
-                    </h6>
+                    <section data-auto-animate>
+                        <h1>Синтаксис триггеров</h1>
+                        <h2><code>CREATE TRIGGER</code></h2>
+                        <p>
+                            команда, используемая для создания нового триггера
+                        </p>
+                        <div class="border-b">
+                            После ключевых слов CREATE TRIGGER указывается
+                            уникальное имя триггера
+                        </div>
+                        <br />
+                        <code class="sql">CREATE TRIGGER update_status</code>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Синтаксис триггеров</h1>
+                        <h2><code>ON таблица</code></h2>
+                        <p>указывает, к какой таблице привязан триггер</p>
+                        <br />
+                        <code class="sql">ON orders</code>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Синтаксис триггеров</h1>
+                        <h2><code>FOR EACH ROW</code></h2>
+                        <p>
+                            указывает, что триггер должен срабатывать для каждой
+                            строки, которая была затронута операцией
+                            <code>INSERT</code>
+                            ,
+                            <code>UPDATE</code>
+                            или
+                            <code>DELETE</code>
+                        </p>
+                    </section>
                 </section>
                 <section>
-                    <h1>Now supports automatic QRCode generation!</h1>
-                    <div>
-                        With GoQR you can just add data-type and alt attributes
-                        to your
-                        <code class="html">
-                            &lt;img src="https://goqr.me/" data-type="qrcode" /
-                            &gt;
+                    <section data-auto-animate>
+                        <h1>Недостатки триггеров</h1>
+                        <h3>Проблемы с производительностью</h3>
+                        <p>
+                            Поскольку триггеры выполняются автоматически при
+                            каждом изменении данных (вставке, обновлении или
+                            удалении), они могут замедлить операции в таблицах с
+                            большим количеством записей
+                        </p>
+                        <h4>Причины</h4>
+                        <div class="grid grid-cols-2 gap-12">
+                            <div class="border-b">
+                                <h4>Избыточное количество триггеров</h4>
+                            </div>
+                            <div class="border-b">
+                                <h4>Сложные операции в теле триггера</h4>
+                            </div>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Недостатки триггеров</h1>
+                        <h3>Трудности с отладкой и тестированием</h3>
+                        <p>
+                            Отладка триггеров может быть сложной задачей, так
+                            как они срабатывают автоматически при выполнении
+                            определённых событий и не всегда явно видны в коде
+                            приложения
+                        </p>
+                        <h4>Причины</h4>
+                        <div class="grid grid-cols-2 gap-12">
+                            <div class="border-b">
+                                <h4>Скрытая логика</h4>
+                            </div>
+                            <div class="border-b">
+                                <h4>Ошибки в коде триггера</h4>
+                            </div>
+                            <div class="border-b col-span-2">
+                                <h4>Последовательность срабатывания</h4>
+                            </div>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Недостатки триггеров</h1>
+                        <h3>Циклические зависимости</h3>
+                        <p>
+                            возникают, когда триггер в одной таблице вызывает
+                            изменения в другой таблице, где, в свою очередь,
+                            срабатывает другой триггер, который может повторно
+                            затронуть первую таблицу
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Недостатки триггеров</h1>
+                        <h3>
+                            Триггеры не поддерживают транзакции между таблицами
+                        </h3>
+                        <p>
+                            Если внутри триггера происходит ошибка, это может
+                            привести к откату изменений только в одной таблице,
+                            а не во всей транзакции
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h1>Недостатки триггеров</h1>
+                        <h3>Ограничения в стандартном SQL</h3>
+                        <p>
+                            Не все СУБД полностью поддерживают триггеры в
+                            соответствии со стандартом SQL
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Процедуры</h1>
+                        <p>
+                            сохранённый набор SQL-инструкций, которые
+                            выполняются как единое целое
+                        </p>
+                        <pre><code data-trim data-noescape data-line-numbers class="sql">
+CREATE PROCEDURE AddUser(IN username VARCHAR(50), IN email VARCHAR(100))
+BEGIN
+    INSERT INTO users (username, email) VALUES (username, email);
+END;
+                    </code></pre>
+                    </section>
+                    <section>
+                        <h1>Преимущества процедур</h1>
+                        <div class="grid grid-cols-2 gap-14">
+                            <h4>Оптимизация повторного использования кода</h4>
+                            <h4>Упрощение поддержки</h4>
+                            <h4>Повышение безопасности</h4>
+                            <h4>Оптимизация производительности</h4>
+                        </div>
+                    </section>
+                    <section>
+                        <h1>Синтаксис процедур</h1>
+                        <h3><code class="sql">CREATE PROCEDURE</code></h3>
+                        <p>
+                            определяет тело процедуры, параметры и действия,
+                            которые должны быть выполнены при вызове процедуры
+                        </p>
+                        <code class="sql">
+                            CREATE PROCEDURE procedure_name (param1 datatype,
+                            param2 datatype, ...)
                         </code>
-                        tag!
-                    </div>
-                    <img
-                        class="r-stretch"
-                        src="https://goqr.me/"
-                        data-type="qrcode" />
-                </section>
-                <section>
-                    <h1>New changes on the way!</h1>
+                    </section>
+                    <section>
+                        <h1>Синтаксис процедур</h1>
+                        <h3><code class="sql">Параметры процедуры</code></h3>
+                        <p>
+                            параметры, которые могут быть различного типа в
+                            зависимости от назначения:
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="border-b">
+                                <h4>Входные параметры (IN)</h4>
+                                <p>
+                                    значения могут использоваться, но не
+                                    изменяются внутри процедуры
+                                </p>
+                            </div>
+                            <div class="border-b">
+                                <h4>Выходные параметры (OUT)</h4>
+                                <p>
+                                    процедура может изменять их значения, и эти
+                                    изменения будут доступны после вызова
+                                    процедуры
+                                </p>
+                            </div>
+                        </div>
+                        <pre><code data-trim data-noescape data-line-numbers class="sql">
+CREATE PROCEDURE GetUserEmail(IN user_id INT, OUT email VARCHAR(100))
+BEGIN
+    SELECT email INTO email FROM users WHERE id = user_id;
+END;
+                        </code></pre>
+                    </section><section>
+                        <h1>Синтаксис процедур</h1>
+                        <h3><code class="sql">Параметры процедуры</code></h3>
+                        <p>
+                            параметры, которые могут быть различного типа в
+                            зависимости от назначения:
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="border-b col-span-2">
+                                <h4>Входно-выходные параметры (INOUT)</h4>
+                                <p>могут быть изменены внутри процедуры</p>
+                            </div>
+                        </div>
+                        <pre><code data-trim data-noescape data-line-numbers class="sql">
+CREATE PROCEDURE IncrementValue(INOUT value INT)
+BEGIN
+    SET value = value + 1;
+END;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Вызов процедур</h1>
+                        <h3><code class="sql">CALL</code></h3>
+                        <p>можно передать необходимые параметры и запустить выполнение процедуры</p>
+                        <code class="sql">CALL procedure_name(param1, param2, ...);</code>
+                    </section>
                 </section>
             </div>
         </div>
@@ -396,4 +554,3 @@ var foo = {
         </script>
     </body>
 </html>
-
