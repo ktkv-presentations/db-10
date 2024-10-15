@@ -338,7 +338,8 @@ BEGIN
     SELECT email INTO email FROM users WHERE id = user_id;
 END;
                         </code></pre>
-                    </section><section>
+                    </section>
+                    <section>
                         <h1>Синтаксис процедур</h1>
                         <h3><code class="sql">Параметры процедуры</code></h3>
                         <p>
@@ -361,8 +362,159 @@ END;
                     <section>
                         <h1>Вызов процедур</h1>
                         <h3><code class="sql">CALL</code></h3>
-                        <p>можно передать необходимые параметры и запустить выполнение процедуры</p>
-                        <code class="sql">CALL procedure_name(param1, param2, ...);</code>
+                        <p>
+                            можно передать необходимые параметры и запустить
+                            выполнение процедуры
+                        </p>
+                        <code class="sql">
+                            CALL procedure_name(param1, param2, ...);
+                        </code>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Событие</h1>
+                        <p>
+                            задача, запланированная для выполнения в базе данных
+                            в определённый момент времени или периодически
+                        </p>
+                        <pre><code data-trim data-noescape data-line-numbers class="sql">
+CREATE EVENT delete_old_logs
+ON SCHEDULE EVERY 1 DAY
+DO
+  DELETE FROM logs WHERE log_date &gt; NOW() - INTERVAL 30 DAY;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Область применения событий</h1>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="border-b">
+                                Очистка устаревших данных
+                            </div>
+                            <div class="border-b">
+                                Создание регулярных отчетов
+                            </div>
+                            <div class="border-b">Обновление данных</div>
+                            <div class="border-b">Резервное копирование</div>
+                        </div>
+                    </section>
+                    <section>
+                        <h1>Синтаксис создания событий</h1>
+                        <h4>
+                            Оператор
+                            <code>CREATE EVENT</code>
+                        </h4>
+                        <p>
+                            позволяет задавать параметры, определяющие, когда и
+                            какие действия должны быть выполнены
+                        </p>
+                        <pre><code data-trim data-noescape data-line-numbers class="sql">
+CREATE EVENT event_name
+ON SCHEDULE schedule_expression
+DO
+  sql_statement;
+                        </code></pre>
+                        <p>
+                            Где
+                            <code>event_name</code>
+                            — имя события,
+                            <code>schedule_expression</code>
+                            — определяет, когда событие будет выполняться,
+                            <code>sql_statement</code>
+                            — SQL-команда или блок команд
+                        </p>
+                    </section>
+                    <section>
+                        <h4>Основные параметры</h4>
+                        <p>
+                            <code>ON SCHEDULE</code>
+                            - указывает расписание выполнения события
+                        </p>
+                        <h5>
+                            Возможные параметры для
+                            <code>ON SCHEDULE</code>
+                        </h5>
+                        <ul>
+                            <li>
+                                <code>AT</code>
+                                указывает конкретное время выполнения
+                            </li>
+                            <li>
+                                <code>EVERY</code>
+                                указывает периодичность выполнения
+                            </li>
+                            <li>
+                                <code>DO</code>
+                                указывается SQL-команда или процедуры,
+                                которые должны быть выполнены, когда событие
+                                срабатывает
+                            </li>
+                        </ul>
+                        <pre><code data-trim data-noescape data-line-numbers class="sql">
+CREATE EVENT daily_backup
+ON SCHEDULE EVERY 1 DAY
+DO
+  CALL backup_procedure();
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Управление событиями</h1>
+                        <h4>Просмотр событий</h4>
+                        <code class="sql">SHOW EVENTS;</code>
+                        <p>возвращает список всех событий в текущей базе данных, включая их названия, расписания и состояние</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Хранимые функции</h1>
+                        <p>
+                            подпрограмма, которая хранится и выполняется на
+                            сервере базы данных
+                        </p>
+                        <div class="border-b">
+                            <h4>Цель хранимой функции</h4>
+                            <p>
+                                возвращать одно значение на основе входных
+                                параметров и логики, прописанной внутри функции
+                            </p>
+                        </div>
+                        <pre><code data-trim data-noescape data-line-numbers class="sql">
+CREATE FUNCTION function_name (parameter1 data_type, parameter2 data_type, ...)
+RETURNS return_data_type
+BEGIN
+    -- тело функции
+    RETURN result;
+END;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>Различия между процедурой и функцией</h1>
+                        <ul>
+                            <li>Функция обязательно возвращает значение</li>
+                            <li>Функции можно использовать в SQL-запросах</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Область применения функций</h1>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="border-b">
+                                Для вычисления агрегированных значений
+                            </div>
+                            <div class="border-b">
+                                Для обработки строк и чисел
+                            </div>
+                            <div class="border-b">
+                                Для проверки условий и выполнения сложных
+                                вычислений
+                            </div>
+                            <div class="border-b">
+                                Для создания логики, которая может быть
+                                использована в разных частях приложения
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h1>Создание хранимых функций</h1>
                     </section>
                 </section>
             </div>
